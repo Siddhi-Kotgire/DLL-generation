@@ -1,37 +1,62 @@
+# -------------------------------------------------------
+# Workflow name shown in GitHub Actions UI
+# -------------------------------------------------------
 name: Build DISCON DLL (ifort)
 
+# -------------------------------------------------------
+# When this workflow runs
+# -------------------------------------------------------
 on:
+  # Run automatically when DISCON.F90 is pushed/changed
   push:
     paths:
       - "DISCON.F90"
+
+  # Allow manual trigger from GitHub Actions tab
   workflow_dispatch:
 
+# -------------------------------------------------------
+# Jobs section
+# -------------------------------------------------------
 jobs:
   build:
+    # Use a GitHub-hosted Windows runner (64-bit)
     runs-on: windows-latest
 
+    # ---------------------------------------------------
+    # Steps executed in order
+    # ---------------------------------------------------
     steps:
+      # Step 1: Checkout repository source code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Install Intel oneAPI Fortran compiler (ifort)
+      # This sets up the compiler and environment variables
       - name: Setup Intel oneAPI Fortran (ifort)
         uses: fortran-lang/setup-fortran@v1
         with:
-          compiler: intel
-          version: '2023.2'
+          compiler: intel          # Intel compiler family
+          version: '2023.2'        # oneAPI version containing ifort
 
+      # Step 3: Verify compiler availability
+      # Shows compiler version and confirms path
       - name: Verify compiler
         shell: cmd
         run: |
-          ifort --version
-          where ifort
+          ifort --version          # Print Intel Fortran version
+          where ifort              # Show path to ifort.exe
 
+      # Step 4: Build the DISCON DLL using batch script
+      # build.bat should call setvars.bat and compile DISCON.F90
       - name: Build DISCON.dll
         shell: cmd
         run: build.bat
 
+      # Step 5: Upload compiled DLL as a build artifact
+      # Allows downloading DISCON.dll from GitHub Actions UI
       - name: Upload DISCON.dll
         uses: actions/upload-artifact@v4
         with:
-          name: DISCON-dll-ifort
-          path: DISCON.dll
+          name: DISCON-dll-ifort    # Artifact name
+          path: DISCON.dll          # File to upload
