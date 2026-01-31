@@ -6,6 +6,8 @@ call "%ONEAPI_ROOT%\setvars.bat"
 REM Verify compiler
 ifort --version
 
+ifort /dll DISCON.F90 /Fe:DISCON.dll
+
 REM Compile DISCON
 ifort ^
   /dll ^

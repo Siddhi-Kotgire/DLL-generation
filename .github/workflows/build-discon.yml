@@ -3,7 +3,7 @@ name: Build DISCON DLL (ifort)
 on:
   push:
     paths:
-      - "DISCON/DISCON.F90"
+      - "DISCON.F90"
   workflow_dispatch:
 
 jobs:
@@ -14,14 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Intel oneAPI (classic ifort)
+      - name: Setup Intel oneAPI Fortran (ifort)
         uses: fortran-lang/setup-fortran@v1
         with:
           compiler: intel
           version: '2023.2'
 
-      - name: Build using ifort
-        working-directory: DISCON
+      - name: Verify compiler
+        shell: cmd
+        run: |
+          ifort --version
+          where ifort
+
+      - name: Build DISCON.dll
         shell: cmd
         run: build.bat
 
@@ -29,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: DISCON-dll-ifort
-          path: DISCON/DISCON.dll
+          path: DISCON.dll
