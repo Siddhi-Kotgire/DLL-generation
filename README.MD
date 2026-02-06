@@ -141,4 +141,4 @@ Rebuild `DISCON.dll` when:
 
 > **DISCON.F90 → ifort → DISCON.dll → OpenFAST**
 
-This setup ensures consistent, portable, and reproducible controller builds.
+This setup ensures consistent, portable, and reproducible controller builds...
