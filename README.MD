@@ -137,7 +137,7 @@ Rebuild `DISCON.dll` when:
 
 ---
 
-## Summary (quick memory hook)
+## Summary 
 
 > **DISCON.F90 → ifort → DISCON.dll → OpenFAST**
 
