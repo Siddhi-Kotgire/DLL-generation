@@ -90,7 +90,7 @@ REAL(4), PARAMETER           :: VS_DT         = 0.000125  !JASON:THIS CHANGED FO
 REAL(4), PARAMETER           :: VS_MaxRat     =   15000.0                       ! Maximum torque rate (in absolute value) in torque controller, N-m/s.
 REAL(4), PARAMETER           :: VS_MaxTq      =   47402.91                      ! Maximum generator torque in Region 3 (HSS side), N-m. -- chosen to be 10% above VS_RtTq = 43.09355kNm
 REAL(4), PARAMETER           :: VS_Rgn2K      =       2.332287                  ! Generator torque constant in Region 2 (HSS side), N-m/(rad/s)^2.
-REAL(4), PARAMETER           :: VS_Rgn2Sp     =      75.39822                   ! Transitional generator speed (HSS side) between regions 1 1/2 and 2, rad/s.
+REAL(4), PARAMETER           :: VS_Rgn2Sp     =      72.25663                   ! Transitional generator speed (HSS side) between regions 1 1/2 and 2, rad/s.
 REAL(4), PARAMETER           :: VS_Rgn3MP     =       0.01745329                ! Minimum pitch angle at which the torque is computed as if we are in region 3 regardless of the generator speed, rad. -- chosen to be 1.0 degree above PC_MinPit
 REAL(4), PARAMETER           :: VS_RtGnSp     =     121.6805                    ! Rated generator speed (HSS side), rad/s. -- chosen to be 99% of PC_RefSpd
 REAL(4), PARAMETER           :: VS_RtPwr      = 5296610.0                       ! Rated generator generator power in Region 3, Watts. -- chosen to be 5MW divided by the electrical generator efficiency of 94.4%
